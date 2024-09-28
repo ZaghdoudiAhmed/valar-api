@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Metadata\ApiResource;
 use App\Enum\CategoryEnum;
 use App\Repository\ProductRepository;
@@ -17,31 +18,40 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('product:read')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('product:read')]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups('product:read')]
     private ?float $price = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('product:read')]
     private ?array $sizes = [];
 
     #[ORM\Column(type: 'string', enumType: CategoryEnum::class)]
+    #[Groups('product:read')]
     private ?CategoryEnum $category = null; // Category as Enum
 
     #[ORM\Column(length: 255)]
+    #[Groups('product:read')]
     private ?string $imageUrl = null;
 
     #[ORM\Column]
+    #[Groups('product:read')]
     private ?int $stockQuantity = null;
 
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups('product:read')]
     private \DateTimeInterface $createdAt;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups('product:read')]
     private \DateTimeInterface $updatedAt;
 
     public function __construct()
